@@ -1,3 +1,113 @@
-{{ define "Filter" }}
-
+{{ define "filter" }}
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/filter.css">
+</head>
+<body>
+    <section class="hero">
+        <img src="/static/images/Groupie1Cropd.jpeg" alt="Concert crowd with spectacular light show" class="hero-image">
+        <div class="hero-content">
+            <h1>Filter Artists</h1>
+        </div>
+    </section>
+    <div class="filter-container">
+        <form id="filterForm" action="/result" method="post">
+            <div class="filter-section">
+                <h2>Creation Date Range</h2>
+                <div class="dual-slider-container">
+                    <div class="slider-wrap">
+                        <label>From:</label>
+                        <input type="range" id="creationDateMin" name="creationDateFrom" 
+                               min="1900" max="2024" value="1900" class="range-min">
+                        <div class="slider-value">Year: <span id="creationDateMinValue">1900</span></div>
+                    </div>
+                    <div class="slider-wrap">
+                        <label>To:</label>
+                        <input type="range" id="creationDateMax" name="creationDateTo" 
+                               min="1900" max="2024" value="2024" class="range-max">
+                        <div class="slider-value">Year: <span id="creationDateMaxValue">2024</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h2>First Album Date Range</h2>
+                <div class="dual-slider-container">
+                    <div class="slider-wrap">
+                        <label>From:</label>
+                        <input type="range" id="albumDateMin" name="albumDateFrom" 
+                               min="1900" max="2024" value="1900" class="range-min">
+                        <div class="slider-value">Year: <span id="albumDateMinValue">1900</span></div>
+                    </div>
+                    <div class="slider-wrap">
+                        <label>To:</label>
+                        <input type="range" id="albumDateMax" name="albumDateTo" 
+                               min="1900" max="2024" value="2024" class="range-max">
+                        <div class="slider-value">Year: <span id="albumDateMaxValue">2024</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h2>Number of Members</h2>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members1" name="members[]" value="1">
+                        <label for="members1">1</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members2" name="members[]" value="2">
+                        <label for="members2">2</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members3" name="members[]" value="3">
+                        <label for="members3">3</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members4" name="members[]" value="4">
+                        <label for="members4">4</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members5" name="members[]" value="5">
+                        <label for="members5">5</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members6" name="members[]" value="6">
+                        <label for="members6">6</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members7" name="members[]" value="7">
+                        <label for="members7">7</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members8" name="members[]" value="8">
+                        <label for="members8">8</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members9" name="members[]" value="9">
+                        <label for="members9">9</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members10plus" name="members[]" value="10+">
+                        <label for="members10plus">10+</label>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h2>Location</h2>
+                <div class="filter-group">
+                    <label for="location">Search by location:</label>
+                    <input type="text" name="location" id="location" placeholder="Enter city, country, or continent">
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="apply-filter">Apply Filters</button>
+                <button type="reset" class="reset-filter">Reset Filters</button>
+                <a href="/" class="return-home">Return Home</a>
+            </div>
+        </form>
+    </div>
+    <script src="./static/filters.js"></script>
+</body>
+</html>
 {{ end }}
