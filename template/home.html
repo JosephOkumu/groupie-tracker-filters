@@ -1,10 +1,8 @@
 {{ define "home" }}
 <html>
-
 <head>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-
 <body>
     <section class="hero">
         <img src="/static/images/Groupie1Cropd.jpeg" alt="Concert crowd with spectacular light show" class="hero-image">
@@ -12,6 +10,9 @@
             <h1>Artists</h1>
         </div>
     </section>
+    <div class="filter-button-container" style="text-align: right; padding: 20px;">
+        <a href="/filter" class="artist-link">Filter Artists</a>
+    </div>
     <main name="index">
         <div class="artists-grid">
             {{ range . }}
@@ -31,6 +32,5 @@
         </div>
     </main>
 </body>
-
 </html>
 {{ end }}
