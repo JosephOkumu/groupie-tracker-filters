@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial update
         updateRangeTrack();
     }
-
     // Setup both range sliders
     const sliders = document.querySelectorAll('.double_range_slider');
     sliders.forEach(setupRangeSlider);
