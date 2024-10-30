@@ -1,70 +1,106 @@
 {{ define "filter" }}
-<div class="filters-holder">
-    <form action="/" method="get" class="filters-container">
-        <!-- Header -->
-        <div class="filter-header">
-            <h2 class="filter-title">Filters</h2>
-            <div class="filters-exit-btn">
-                <i id="exit" class='bx bx-x'></i>      
-            </div>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <section class="hero">
+        <img src="/static/images/Groupie1Cropd.jpeg" alt="Concert crowd with spectacular light show" class="hero-image">
+        <div class="hero-content">
+            <h1>Filter Artists</h1>
         </div>
-
-        <!-- Creation Filter -->
-        <div class="filter-item-holder creation-filter">
-            <h3 class="filter-title">Creation Date Filter</h3>
-            <div class="filter-result">{{.CreationFilter.Min}} - {{.CreationFilter.Max}}</div>
-                {{ template "creationRange" .CreationFilter}}
-        </div>
-
-        <!-- First Album Filter -->
-        <div class="filter-item-holder first-album-filter">
-            <h3 class="filter-title">First Album Date Filter</h3>
-            <div class="filter-result">{{.FirstAlbumFilter.Min}} - {{.FirstAlbumFilter.Max}}</div>
-                {{ template "firstAlbumRange" .FirstAlbumFilter}}
-        </div>
-
-        <!-- Members Filter -->
-        <div class="filter-item-holder members-filter">
-            <h3 class="filter-title">Members Filter</h3>
-            <div class="filter-item-container">
-                {{$checks := .MembersFilter.MembersChecked}}
-                {{ range $key, $value := .MembersFilter.MembersSizes }}
-                    <div class="member-input">
-                        <input
-                        {{if index $checks $key}}
-                            checked
-                        {{end}}
-                         type="checkbox" name="members" id="member-{{$key}}" value="{{$key}}">
-                        <label for="member-{{$key}}">{{$key}}</label>
+    </section>
+    <div class="filter-container">
+        <form id="filterForm" action="/result" method="post">
+            <div class="filter-section">
+                <h2>Creation Date Range</h2>
+                <div class="double_range_slider_box">
+                    <div class="double_range_slider">
+                        <span class="range_track" id="creation_range_track"></span>
+                        <input type="range" class="min" name="creationDateFrom" 
+                               min="1900" max="2024" value="1900" step="1" />
+                        <input type="range" class="max" name="creationDateTo" 
+                               min="1900" max="2024" value="2024" step="1" />
+                        <div class="minvalue">1900</div>
+                        <div class="maxvalue">2024</div>
                     </div>
-                {{ end }}
+                </div>
             </div>
-        </div>
-
-        <!-- Locations Filter -->
-        <div class="filter-item-holder locations-filter">
-            <h3 class="filter-title">Locations Filter</h3>
-            <div class="filter-item-container">
-                <select name="location">
-                    <option value="none" disabled selected hidden>Select a Location</option>
-                    {{ $selectedLocation := .LocationsFilter.LocationChecked }}
-                    {{ range $key, $value := .LocationsFilter.Locations }}
-                        <option
-                        {{ if eq $selectedLocation $key }}
-                            selected
-                        {{ end }}
-                         value="{{$key}}">{{$key}}</option>
-                    {{ end }}
-                </select>
+            
+            <div class="filter-section">
+                <h2>First Album Date Range</h2>
+                <div class="double_range_slider_box">
+                    <div class="double_range_slider">
+                        <span class="range_track" id="album_range_track"></span>
+                        <input type="range" class="min" name="albumDateFrom" 
+                               min="1900" max="2024" value="1900" step="1" />
+                        <input type="range" class="max" name="albumDateTo" 
+                               min="1900" max="2024" value="2024" step="1" />
+                        <div class="minvalue">1900</div>
+                        <div class="maxvalue">2024</div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <!-- Submit Holder -->
-        <div class="submit-holder">
-            <a class="reset" href="/">Reset</a>
-            <input type="submit" value="Submit" class="filter-submit">
-        </div>
-
-    </form>
-</div>
+            <div class="filter-section">
+                <h2>Number of Members</h2>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members1" name="members[]" value="1">
+                        <label for="members1">1</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members2" name="members[]" value="2">
+                        <label for="members2">2</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members3" name="members[]" value="3">
+                        <label for="members3">3</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members4" name="members[]" value="4">
+                        <label for="members4">4</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members5" name="members[]" value="5">
+                        <label for="members5">5</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members6" name="members[]" value="6">
+                        <label for="members6">6</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members7" name="members[]" value="7">
+                        <label for="members7">7</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members8" name="members[]" value="8">
+                        <label for="members8">8</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members9" name="members[]" value="9">
+                        <label for="members9">9</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members10plus" name="members[]" value="10+">
+                        <label for="members10plus">10+</label>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h2>Location</h2>
+                <div class="filter-group">
+                    <label for="location">Search by location:</label>
+                    <input type="text" name="location" id="location" placeholder="Enter city, country, or continent">
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="apply-filter">Apply Filters</button>
+                <button type="reset" class="reset-filter">Reset Filters</button>
+                <a href="/" class="return-home">Return Home</a>
+            </div>
+        </form>
+    </div>
+    <script src="/static/filters.js"></script>
+</body>
+</html>
 {{ end }}
